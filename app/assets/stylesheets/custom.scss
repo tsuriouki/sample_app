@@ -120,6 +120,26 @@ footer {
   }
 }
 
+
+@media (max-width: 800px) {
+  footer {
+    small {
+      display: block;
+      float: none;
+      margin-bottom: 1em;
+    }
+    ul {
+      float: none;
+      padding: 0;
+      li {
+        float: none;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+
 /* sidebar */
 
 aside {
@@ -186,4 +206,10 @@ input {
   }
 }
 
+
+/* Dropdown menu */
+
+.dropdown-menu.active {
+  display: block;
+}
 
