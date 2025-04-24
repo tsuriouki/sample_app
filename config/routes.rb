@@ -22,4 +22,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # 臨時で追加　後で削除！
+  get 'admin/delete_user', to: 'admin#delete_user'
+
 end
