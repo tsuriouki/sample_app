@@ -56,9 +56,9 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile --trace
 # Final stage for app image
 FROM base
 
-# これを追加（libpq.so.5 を含むパッケージ）
+# これを追加（libpq.so.5 を含むパッケージ） imagemagickもインストールに追加
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y libpq5 && \
+    apt-get install --no-install-recommends -y libpq5 imagemagick && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 
