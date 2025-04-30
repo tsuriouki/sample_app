@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :microposts,          only: [:create, :destroy]
+  get '/microposts', to: 'static_pages#home'
 
-  # 臨時で追加 URLから特定ユーザーをdeleteできるため、本番環境では絶対に実装してはいけない！！
+  # 臨時で追加 URLから特定ユーザーをdeleteできるため、本番環境では本来絶対に実装してはいけない！！
   get 'admin/delete_user', to: 'admin#delete_user'
 
 end

@@ -10,7 +10,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    redirect_to root_url,  status: :see_other and return unless @user.activated?
+    # @microposts = @user.microposts.paginate(page: params[:page]) 元々のチュートリアルではこれのみ　以下のif文はなかった
+    # ユーザーが未有効化の場合はリダイレクト
+    if !@user.activated
+      redirect_to root_url, notice: "Account not activated yet.", status: :see_other
+    else
+      @microposts = @user.microposts.paginate(page: params[:page])
+    end
   end
 
   def new
@@ -53,15 +59,6 @@ class UsersController < ApplicationController
     end
 
     # beforeフィルタ
-
-    # ログイン済みユーザーかどうか確認
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url, status: :see_other
-      end
-    end
 
     # 正しいユーザーかどうか確認
     def correct_user
